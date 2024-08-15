@@ -6,7 +6,7 @@ import Link from 'next/link'
 import React from 'react'
 
 
-export default function Mugs() {
+export default function Stickers() {
     return (
         <div>
             <section className="text-gray-600 body-font">
@@ -14,7 +14,7 @@ export default function Mugs() {
                     <div className="flex flex-wrap mx-9 my-16 gap-5">
                         <Link href={`/product/wear-the-code`}><div className="p-4 w-full shadow-lg">
                             <div className="block relative rounded overflow-hidden">
-                                <img alt="ecommerce" className="h-[45vh] w-[19.7vw] m-auto block" src="https://m.media-amazon.com/images/I/61QoPLbnllL._SL1400_.jpg"/>
+                                <img alt="ecommerce" className="h-[45vh] w-[19.7vw] m-auto block" src="https://m.media-amazon.com/images/I/61Cfz71pGNL._SY300_SX300_QL70_FMwebp_.jpg"/>
                             </div>
                             <div className="mt-4 text-center">
                                 <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1">T-shirt</h3>
@@ -24,7 +24,7 @@ export default function Mugs() {
                         </div></Link>
                         <Link href={`/product/wear-the-code`}><div className="p-4 w-full shadow-lg">
                             <div className="block relative rounded overflow-hidden">
-                                <img alt="ecommerce" className="h-[45vh] w-[19.7vw] m-auto block" src="https://m.media-amazon.com/images/I/61QoPLbnllL._SL1400_.jpg"/>
+                                <img alt="ecommerce" className="h-[45vh] w-[19.7vw] m-auto block" src="https://m.media-amazon.com/images/I/61Cfz71pGNL._SY300_SX300_QL70_FMwebp_.jpg"/>
                             </div>
                             <div className="mt-4 text-center">
                                 <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1">T-shirt</h3>
@@ -34,7 +34,7 @@ export default function Mugs() {
                         </div></Link>
                         <Link href={`/product/wear-the-code`}><div className="p-4 w-full shadow-lg">
                             <div className="block relative rounded overflow-hidden">
-                                <img alt="ecommerce" className="h-[45vh] w-[19.7vw] m-auto block" src="https://m.media-amazon.com/images/I/61QoPLbnllL._SL1400_.jpg"/>
+                                <img alt="ecommerce" className="h-[45vh] w-[19.7vw] m-auto block" src="https://m.media-amazon.com/images/I/61Cfz71pGNL._SY300_SX300_QL70_FMwebp_.jpg"/>
                             </div>
                             <div className="mt-4 text-center">
                                 <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1">T-shirt</h3>
@@ -44,7 +44,7 @@ export default function Mugs() {
                         </div></Link>
                         <Link href={`/product/wear-the-code`}><div className="p-4 w-full shadow-lg">
                             <div className="block relative rounded overflow-hidden">
-                                <img alt="ecommerce" className="h-[45vh] w-[19.7vw] m-auto block" src="https://m.media-amazon.com/images/I/61QoPLbnllL._SL1400_.jpg"/>
+                                <img alt="ecommerce" className="h-[45vh] w-[19.7vw] m-auto block" src="https://m.media-amazon.com/images/I/61Cfz71pGNL._SY300_SX300_QL70_FMwebp_.jpg"/>
                             </div>
                             <div className="mt-4 text-center">
                                 <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1">T-shirt</h3>
@@ -54,7 +54,7 @@ export default function Mugs() {
                         </div></Link>
                         <Link href={`/product/wear-the-code`}><div className="p-4 w-full shadow-lg">
                             <div className="block relative rounded overflow-hidden">
-                                <img alt="ecommerce" className="h-[45vh] w-[19.7vw] m-auto block" src="https://m.media-amazon.com/images/I/61QoPLbnllL._SL1400_.jpg"/>
+                                <img alt="ecommerce" className="h-[45vh] w-[19.7vw] m-auto block" src="https://m.media-amazon.com/images/I/61Cfz71pGNL._SY300_SX300_QL70_FMwebp_.jpg"/>
                             </div>
                             <div className="mt-4 text-center">
                                 <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1">T-shirt</h3>
@@ -64,7 +64,7 @@ export default function Mugs() {
                         </div></Link>
                         <Link href={`/product/wear-the-code`}><div className="p-4 w-full shadow-lg">
                             <div className="block relative rounded overflow-hidden">
-                                <img alt="ecommerce" className="h-[45vh] w-[19.7vw] m-auto block" src="https://m.media-amazon.com/images/I/61QoPLbnllL._SL1400_.jpg"/>
+                                <img alt="ecommerce" className="h-[45vh] w-[19.7vw] m-auto block" src="https://m.media-amazon.com/images/I/61Cfz71pGNL._SY300_SX300_QL70_FMwebp_.jpg"/>
                             </div>
                             <div className="mt-4 text-center">
                                 <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1">T-shirt</h3>
@@ -74,7 +74,7 @@ export default function Mugs() {
                         </div></Link>
                         <Link href={`/product/wear-the-code`}><div className="p-4 w-full shadow-lg">
                             <div className="block relative rounded overflow-hidden">
-                                <img alt="ecommerce" className="h-[45vh] w-[19.7vw] m-auto block" src="https://m.media-amazon.com/images/I/61QoPLbnllL._SL1400_.jpg"/>
+                                <img alt="ecommerce" className="h-[45vh] w-[19.7vw] m-auto block" src="https://m.media-amazon.com/images/I/61Cfz71pGNL._SY300_SX300_QL70_FMwebp_.jpg"/>
                             </div>
                             <div className="mt-4 text-center">
                                 <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1">T-shirt</h3>
@@ -84,7 +84,7 @@ export default function Mugs() {
                         </div></Link>
                         <Link href={`/product/wear-the-code`}><div className="p-4 w-full shadow-lg">
                             <div className="block relative rounded overflow-hidden">
-                                <img alt="ecommerce" className="h-[45vh] w-[19.7vw] m-auto block" src="https://m.media-amazon.com/images/I/61QoPLbnllL._SL1400_.jpg"/>
+                                <img alt="ecommerce" className="h-[45vh] w-[19.7vw] m-auto block" src="https://m.media-amazon.com/images/I/61Cfz71pGNL._SY300_SX300_QL70_FMwebp_.jpg"/>
                             </div>
                             <div className="mt-4 text-center">
                                 <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1">T-shirt</h3>
