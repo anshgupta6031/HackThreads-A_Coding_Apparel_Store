@@ -2,17 +2,9 @@
 
 
 
-import Footer from "./components/Footer";
-import Navbar from "./components/Navbar";
-
-
 export default function Home() {
     return (
         <>
-            <Navbar />
-
-            <hr />
-
             <section className="text-gray-600 body-font">
                 <div className="container px-5 py-24 mx-auto">
                     <div className="flex flex-wrap w-full mb-20 flex-col items-center text-center">
@@ -92,10 +84,6 @@ export default function Home() {
                     </div>
                 </div>
             </section>
-
-            <hr />
-
-            <Footer />
         </>
     )
 }
