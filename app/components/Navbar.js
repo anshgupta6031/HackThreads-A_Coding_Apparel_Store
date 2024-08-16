@@ -62,8 +62,8 @@ export default function Navbar() {
                         </ol>
 
                         <div className="flex my-10 justify-center">
-                            <button class="flex mx-2 text-white bg-indigo-500 border-0 py-3 px-3 focus:outline-none hover:bg-indigo-600 rounded text-sm"><IoBagCheck className='mr-1 text-lg' />Checkout</button>
-                            <button class="flex mx-2 text-white bg-indigo-500 border-0 py-3 px-3 focus:outline-none hover:bg-indigo-600 rounded text-sm">Clear Cart</button>
+                            <button className="flex mx-2 text-white bg-indigo-500 border-0 py-3 px-3 focus:outline-none hover:bg-indigo-600 rounded text-sm"><IoBagCheck className='mr-1 text-lg' />Checkout</button>
+                            <button className="flex mx-2 text-white bg-indigo-500 border-0 py-3 px-3 focus:outline-none hover:bg-indigo-600 rounded text-sm">Clear Cart</button>
                         </div>
 
                     </div>
