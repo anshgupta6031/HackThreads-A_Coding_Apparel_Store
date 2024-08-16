@@ -47,7 +47,7 @@ export default function Navbar() {
                         <AiOutlineShoppingCart className='ml-2' />
                     </button>
 
-                    <div ref={ref} className="sideCart w-80 h-full absolute top-0 right-0 bg-indigo-100 px-8 py-10 transform transition-transform translate-x-full">
+                    <div ref={ref} className="sideCart w-80 h-full absolute top-0 right-0 bg-indigo-100 px-8 py-10 transform transition-transform translate-x-full z-10 opacity-[0.99]">
                         <h2 className='font-bold text-xl text-center'>Shopping Cart</h2>
 
                         <span onClick={togglecart} className="absolute top-3 right-3 cursor-pointer text-2xl"><IoCloseCircleOutline /></span>
@@ -61,7 +61,11 @@ export default function Navbar() {
                             </li>
                         </ol>
 
-                        <button class="flex mx-auto mt-16 text-white bg-indigo-500 border-0 py-2 px-3 focus:outline-none hover:bg-indigo-600 rounded text-lg"><IoBagCheck className='my-1 mr-1' />Checkout</button>
+                        <div className="flex my-10 justify-center">
+                            <button class="flex mx-2 text-white bg-indigo-500 border-0 py-3 px-3 focus:outline-none hover:bg-indigo-600 rounded text-sm"><IoBagCheck className='mr-1 text-lg' />Checkout</button>
+                            <button class="flex mx-2 text-white bg-indigo-500 border-0 py-3 px-3 focus:outline-none hover:bg-indigo-600 rounded text-sm">Clear Cart</button>
+                        </div>
+
                     </div>
                 </div>
             </header>
