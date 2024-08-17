@@ -1,28 +1,23 @@
-import { Inter } from "next/font/google";
-import "./globals.css";
-import Footer from "./components/Footer";
-import Navbar from "./components/Navbar";
+"use client"
 
+import "./globals.css"
+import { CartProvider } from "./context/CartContext"
+import Navbar from "./components/Navbar"
+import Footer from "./components/Footer"
 
-const inter = Inter({ subsets: ["latin"] });
-
-export const metadata = {
-    title: "HackThreads - Hack the Code, Wear the Style",
-    description: "Hack the Code, Wear the Style",
-};
 
 export default function RootLayout({ children }) {
-    return (
-        <html lang="en">
-            <body className={inter.className}>
+  return (
+    <html lang="en">
+      <body>
 
-                <Navbar />
-
-                {children}
-
-                <Footer />
-
-            </body>
-        </html>
-    );
+        <CartProvider>
+          <Navbar />
+          {children}
+          <Footer />
+        </CartProvider>
+        
+      </body>
+    </html>
+  )
 }
