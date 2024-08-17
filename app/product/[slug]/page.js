@@ -32,7 +32,7 @@ export default function Product({ params }) {
 
     return (
         <div>
-            <section className="text-gray-600 body-font overflow-hidden">
+            <section className="text-gray-600 body-font overflow-hidden mt-14">
                 <div className="container px-5 py-20 mx-auto">
                     <div className="lg:w-4/5 mx-auto flex flex-wrap">
                         <img alt="ecommerce" className="lg:w-1/2 w-full lg:h-auto px-24 object-cover object-top rounded" src="https://m.media-amazon.com/images/I/51byp5tQ86L._SX679_.jpg" />

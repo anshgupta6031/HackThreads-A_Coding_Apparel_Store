@@ -35,7 +35,7 @@ export default function Navbar() {
     
     return (
         <div>
-            <header className="text-gray-600 body-font">
+            <header className="fixed top-0 left-0 right-0 z-20 bg-white text-gray-600 body-font shadow-md">
                 <div className="container mx-auto flex flex-wrap p-4 flex-col md:flex-row items-center shadow-md">
                     <Link href="/" className="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full" viewBox="0 0 24 24">
@@ -53,7 +53,7 @@ export default function Navbar() {
                         <AiOutlineShoppingCart className='ml-2' />
                     </button>
 
-                    <div ref={ref} className="sideCart w-80 h-full absolute top-0 right-0 bg-indigo-100 px-8 py-10 transform transition-transform translate-x-full z-10 opacity-[0.99]">
+                    <div ref={ref} className="sideCart fixed top-0 right-0 w-80 h-full bg-indigo-100 px-8 py-10 transform transition-transform translate-x-full z-20 opacity-[0.99]">
                         <h2 className='font-bold text-xl text-center'>Shopping Cart</h2>
 
                         <span onClick={toggleCart} className="absolute top-3 right-3 cursor-pointer text-2xl"><IoCloseCircleOutline /></span>
@@ -74,11 +74,12 @@ export default function Navbar() {
                             ))}
                         </ol>
 
-                        <div className="flex my-10 justify-center">
-                            <button className="flex mx-2 text-white bg-indigo-500 border-0 py-3 px-3 focus:outline-none hover:bg-indigo-600 rounded text-sm"><IoBagCheck className='mr-1 text-lg' />Checkout</button>
+                        <div className='total font-medium mt-8 mx-6'>Subtotal: {subTotal}₹</div>
+
+                        <div className="flex mt-8 justify-center">
+                            <Link href='/checkout'><button onClick={toggleCart} className="flex mx-2 text-white bg-indigo-500 border-0 py-3 px-3 focus:outline-none hover:bg-indigo-600 rounded text-sm"><IoBagCheck className='mr-1 text-lg' />Checkout</button></Link>
                             <button onClick={clearCart} className="flex mx-2 text-white bg-indigo-500 border-0 py-3 px-3 focus:outline-none hover:bg-indigo-600 rounded text-sm">Clear Cart</button>
                         </div>
-
                     </div>
                 </div>
             </header>

@@ -9,7 +9,7 @@ import React from 'react'
 export default function Stickers() {
     return (
         <div>
-            <section className="text-gray-600 body-font">
+            <section className="text-gray-600 body-font mt-32">
                 <div className="container px-5 mx-auto">
                     <div className="flex flex-wrap mx-9 my-16 gap-5">
                         <Link href={`/product/wear-the-code`}><div className="p-4 w-full shadow-lg">
