@@ -10,6 +10,7 @@ import { AiOutlineShoppingCart } from "react-icons/ai"
 import { IoCloseCircleOutline } from "react-icons/io5"
 import { FiPlusCircle, FiMinusCircle } from "react-icons/fi"
 import { IoBagCheck } from "react-icons/io5"
+import { MdAccountCircle } from "react-icons/md"
 import { CartContext } from "../context/CartContext"
 
 
@@ -49,7 +50,11 @@ export default function Navbar() {
                         <Link href="/stickers" className="mr-5 hover:text-gray-900">Stickers</Link>
                         <Link href="/mugs" className="mr-5 hover:text-gray-900">Mugs</Link>
                     </nav>
-                    <button onClick={toggleCart} className="inline-flex items-center bg-gray-200 border-0 py-1 px-3 focus:outline-none hover:bg-gray-300 rounded text-base mt-4 md:mt-0">Cart
+                    
+                    <Link href="/login"><button className="inline-flex items-center bg-gray-200 border-0 py-[0.3rem] px-[0.5rem] focus:outline-none hover:bg-gray-300 rounded text-base mt-4 md:mt-0 mr-4 font-semibold">My Account
+                        <MdAccountCircle className='text-[1.3rem] ml-2' />
+                    </button></Link>
+                    <button onClick={toggleCart} className="inline-flex items-center bg-gray-200 border-0 py-1 px-3 focus:outline-none hover:bg-gray-300 rounded text-base mt-4 md:mt-0 font-semibold">Cart
                         <AiOutlineShoppingCart className='ml-2' />
                     </button>
 
