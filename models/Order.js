@@ -49,6 +49,7 @@ const OrderSchema = new mongoose.Schema({         //  a schema is defined.......
 
 
 
+mongoose.models = {}
 module.exports = mongoose.model("Orders", OrderSchema)
 
 

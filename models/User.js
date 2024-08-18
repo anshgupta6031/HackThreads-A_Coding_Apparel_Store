@@ -31,6 +31,7 @@ const UserSchema = new mongoose.Schema({         //  a schema is defined.......
 
 
 
+mongoose.models = {}
 module.exports = mongoose.model("Users", UserSchema)
 
 
