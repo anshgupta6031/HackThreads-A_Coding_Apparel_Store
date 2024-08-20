@@ -68,7 +68,7 @@ export default function Navbar() {
                             {Object.keys(cart).map((k) => (
                                 <li key={k}>
                                     <div className='item flex my-4'>
-                                        <div className='w-2/3 font-medium'>{cart[k].name}</div>
+                                        <div className='w-2/3 font-medium'>{cart[k].name} ({cart[k].size}/{cart[k].variant})</div>
                                         <div className='w-1/3 font-medium flex items-center justify-center'>
                                             <FiMinusCircle className='text-lg cursor-pointer' onClick={() => removeFromCart(k, 1)} />
                                             <span className='mx-2 text-sm'>{cart[k].qty}</span>
