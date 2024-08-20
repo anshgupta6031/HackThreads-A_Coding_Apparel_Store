@@ -5,6 +5,8 @@
 "use client"
 
 import React, { createContext, useState, useEffect } from "react"
+import { useRouter } from 'next/navigation'
+
 
 export const CartContext = createContext()
 
@@ -68,6 +70,19 @@ export const CartProvider = ({ children }) => {
 	}
 
 
+	const router = useRouter()
+
+	const buyNow = (itemCode, qty, price, name, size, variant)=>{
+        saveCart({})
+
+		let newCart = {itemCode: { qty, price, name, size, variant }}
+		setCart(newCart)
+		saveCart(newCart)
+
+		router.push('/checkout')
+    }
+
+
 	useEffect(() => {
 
 		try {
@@ -94,7 +109,7 @@ export const CartProvider = ({ children }) => {
 
 
 	return (
-		<CartContext.Provider value={{ cart, subTotal, addToCart, removeFromCart, clearCart }}>
+		<CartContext.Provider value={{ cart, subTotal, addToCart, removeFromCart, clearCart, buyNow }}>
 			{children}
 		</CartContext.Provider>
 	)

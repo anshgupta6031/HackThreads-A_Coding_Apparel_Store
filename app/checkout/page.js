@@ -82,7 +82,7 @@ export default function Checkout() {
                     {Object.keys(cart).map((k) => (
                         <li key={k}>
                             <div className='item flex my-4 justify-between'>
-                                <div className='font-medium'>{cart[k].name}</div>
+                                <div className='font-medium'>{cart[k].name} ({cart[k].size}/{cart[k].variant})</div>
                                 <div className='font-medium flex items-center justify-center'>
                                     <FiMinusCircle className='text-lg cursor-pointer' onClick={() => removeFromCart(k, 1)} />
                                     <span className='mx-2 text-sm'>{cart[k].qty}</span>

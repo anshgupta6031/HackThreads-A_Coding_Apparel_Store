@@ -58,7 +58,7 @@ export default function Navbar() {
                         <AiOutlineShoppingCart className='ml-2' />
                     </button>
 
-                    <div ref={ref} className="sideCart fixed top-0 right-0 w-80 h-full bg-indigo-100 px-8 py-10 transform transition-transform translate-x-full z-20 opacity-[0.99]">
+                    <div ref={ref} className="sideCart overflow-y-scroll fixed top-0 right-0 w-80 h-full bg-indigo-100 px-8 py-10 transform transition-transform translate-x-full z-20 opacity-[0.99]">
                         <h2 className='font-bold text-xl text-center'>Shopping Cart</h2>
 
                         <span onClick={toggleCart} className="absolute top-3 right-3 cursor-pointer text-2xl"><IoCloseCircleOutline /></span>
