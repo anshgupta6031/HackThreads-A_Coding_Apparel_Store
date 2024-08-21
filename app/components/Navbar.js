@@ -13,6 +13,8 @@ import { IoBagCheck } from "react-icons/io5"
 import { MdAccountCircle } from "react-icons/md"
 import { CartContext } from "../context/CartContext"
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 export default function Navbar() {
@@ -26,17 +28,18 @@ export default function Navbar() {
             ref.current.classList.remove("translate-x-full")
             ref.current.classList.add("translate-x-0")
         }
-        
+
         else {
             ref.current.classList.remove("translate-x-0")
             ref.current.classList.add("translate-x-full")
         }
     }
 
-    
+
     return (
         <div>
             <header className="fixed top-0 left-0 right-0 z-20 bg-white text-gray-600 body-font shadow-md">
+                <ToastContainer position="top-center" autoClose={1500} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover={false} theme="light" />
                 <div className="container mx-auto flex flex-wrap p-4 flex-col md:flex-row items-center shadow-md">
                     <Link href="/" className="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full" viewBox="0 0 24 24">
@@ -50,7 +53,7 @@ export default function Navbar() {
                         <Link href="/stickers" className="mr-5 hover:text-gray-900">Stickers</Link>
                         <Link href="/mugs" className="mr-5 hover:text-gray-900">Mugs</Link>
                     </nav>
-                    
+
                     <Link href="/login"><button className="inline-flex items-center bg-gray-200 border-0 py-[0.3rem] px-[0.5rem] focus:outline-none hover:bg-gray-300 rounded text-base mt-4 md:mt-0 mr-4 font-semibold">My Account
                         <MdAccountCircle className='text-[1.3rem] ml-2' />
                     </button></Link>

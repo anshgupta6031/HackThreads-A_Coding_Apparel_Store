@@ -7,6 +7,9 @@
 import React, { createContext, useState, useEffect } from "react"
 import { useRouter } from 'next/navigation'
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 export const CartContext = createContext()
 
@@ -46,6 +49,8 @@ export const CartProvider = ({ children }) => {
 
 		setCart(newCart)
 		saveCart(newCart)
+
+		toast.success('Item added Successfully!', { position: "top-center", autoClose: 1500, hideProgressBar: false, closeOnClick: true, pauseOnHover: false, draggable: true, progress: undefined, theme: "light" });
 	}
 
 
@@ -61,26 +66,29 @@ export const CartProvider = ({ children }) => {
 
 		setCart(newCart)
 		saveCart(newCart)
+
+		toast.success('Item removed Successfully!', { position: "top-center", autoClose: 1500, hideProgressBar: false, closeOnClick: true, pauseOnHover: false, draggable: true, progress: undefined, theme: "light" });
 	}
 
 
 	const clearCart = () => {
 		setCart({})
 		saveCart({})
+		toast.success('Cart cleared Successfully!', { position: "top-center", autoClose: 1500, hideProgressBar: false, closeOnClick: true, pauseOnHover: false, draggable: true, progress: undefined, theme: "light" });
 	}
 
 
 	const router = useRouter()
 
-	const buyNow = (itemCode, qty, price, name, size, variant)=>{
-        saveCart({})
+	const buyNow = (itemCode, qty, price, name, size, variant) => {
+		saveCart({})
 
-		let newCart = {itemCode: { qty, price, name, size, variant }}
+		let newCart = { itemCode: { qty, price, name, size, variant } }
 		setCart(newCart)
 		saveCart(newCart)
 
 		router.push('/checkout')
-    }
+	}
 
 
 	useEffect(() => {
