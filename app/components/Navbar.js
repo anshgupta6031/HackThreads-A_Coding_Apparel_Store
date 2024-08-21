@@ -50,7 +50,7 @@ export default function Navbar() {
                     <nav className="md:ml-auto md:mr-auto flex flex-wrap items-center text-base justify-center">
                         <Link href="/tshirts" className="mr-5 hover:text-gray-900">Tshirts</Link>
                         <Link href="/hoodies" className="mr-5 hover:text-gray-900">Hoodies</Link>
-                        <Link href="/stickers" className="mr-5 hover:text-gray-900">Stickers</Link>
+                        <Link href="/sweatshirts" className="mr-5 hover:text-gray-900">Sweatshirts</Link>
                         <Link href="/mugs" className="mr-5 hover:text-gray-900">Mugs</Link>
                     </nav>
 

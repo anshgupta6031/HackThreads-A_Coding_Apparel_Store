@@ -2,100 +2,47 @@
 
 
 
-import Link from 'next/link'
+
 import React from 'react'
+import Client from './Client'
+import Product from "@/models/Product";
+import connectToMongo from "@/middleware/mongoose";
 
 
-export default function Hoodies() {
+export default async function Hoodies() {
+
+    await connectToMongo()
+
+    let data = await Product.find({ category: "hoodies" })
+
+    let hoodies = {}
+
+    for (let item of data) {
+
+        if (item.title in hoodies) {
+            if (!hoodies[item.title].color.includes(item.color) && item.availableQty > 0) {
+                hoodies[item.title].color.push(item.color)
+            }
+
+            if (!hoodies[item.title].size.includes(item.size) && item.availableQty > 0) {
+                hoodies[item.title].size.push(item.size)
+            }
+        }
+
+        else {
+            hoodies[item.title] = JSON.parse(JSON.stringify(item))
+
+            if (item.availableQty > 0) {
+                hoodies[item.title].color = [item.color]
+                hoodies[item.title].size = [item.size]
+            }
+        }
+    }
+
+    let products = await JSON.parse(JSON.stringify(hoodies))
+
     return (
-        <div>
-            <section className="text-gray-600 body-font mt-32">
-                <div className="container px-5 mx-auto">
-                    <div className="flex flex-wrap mx-9 my-16 gap-5">
-                        <Link href={`/product/wear-the-code`}><div className="p-4 w-full shadow-lg">
-                            <div className="block relative rounded overflow-hidden">
-                                <img alt="ecommerce" className="h-[45vh] w-[19.7vw] m-auto block" src="https://m.media-amazon.com/images/I/61DNXOmaMsL._SY879_.jpg"/>
-                            </div>
-                            <div className="mt-4 text-center">
-                                <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1">T-shirt</h3>
-                                <h2 className="text-gray-900 title-font text-lg font-medium">Shooting Stars</h2>
-                                <p className="mt-1">$21.15</p>
-                            </div>
-                        </div></Link>
-                        <Link href={`/product/wear-the-code`}><div className="p-4 w-full shadow-lg">
-                            <div className="block relative rounded overflow-hidden">
-                                <img alt="ecommerce" className="h-[45vh] w-[19.7vw] m-auto block" src="https://m.media-amazon.com/images/I/61DNXOmaMsL._SY879_.jpg"/>
-                            </div>
-                            <div className="mt-4 text-center">
-                                <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1">T-shirt</h3>
-                                <h2 className="text-gray-900 title-font text-lg font-medium">Shooting Stars</h2>
-                                <p className="mt-1">$21.15</p>
-                            </div>
-                        </div></Link>
-                        <Link href={`/product/wear-the-code`}><div className="p-4 w-full shadow-lg">
-                            <div className="block relative rounded overflow-hidden">
-                                <img alt="ecommerce" className="h-[45vh] w-[19.7vw] m-auto block" src="https://m.media-amazon.com/images/I/61DNXOmaMsL._SY879_.jpg"/>
-                            </div>
-                            <div className="mt-4 text-center">
-                                <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1">T-shirt</h3>
-                                <h2 className="text-gray-900 title-font text-lg font-medium">Shooting Stars</h2>
-                                <p className="mt-1">$21.15</p>
-                            </div>
-                        </div></Link>
-                        <Link href={`/product/wear-the-code`}><div className="p-4 w-full shadow-lg">
-                            <div className="block relative rounded overflow-hidden">
-                                <img alt="ecommerce" className="h-[45vh] w-[19.7vw] m-auto block" src="https://m.media-amazon.com/images/I/61DNXOmaMsL._SY879_.jpg"/>
-                            </div>
-                            <div className="mt-4 text-center">
-                                <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1">T-shirt</h3>
-                                <h2 className="text-gray-900 title-font text-lg font-medium">Shooting Stars</h2>
-                                <p className="mt-1">$21.15</p>
-                            </div>
-                        </div></Link>
-                        <Link href={`/product/wear-the-code`}><div className="p-4 w-full shadow-lg">
-                            <div className="block relative rounded overflow-hidden">
-                                <img alt="ecommerce" className="h-[45vh] w-[19.7vw] m-auto block" src="https://m.media-amazon.com/images/I/61DNXOmaMsL._SY879_.jpg"/>
-                            </div>
-                            <div className="mt-4 text-center">
-                                <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1">T-shirt</h3>
-                                <h2 className="text-gray-900 title-font text-lg font-medium">Shooting Stars</h2>
-                                <p className="mt-1">$21.15</p>
-                            </div>
-                        </div></Link>
-                        <Link href={`/product/wear-the-code`}><div className="p-4 w-full shadow-lg">
-                            <div className="block relative rounded overflow-hidden">
-                                <img alt="ecommerce" className="h-[45vh] w-[19.7vw] m-auto block" src="https://m.media-amazon.com/images/I/61DNXOmaMsL._SY879_.jpg"/>
-                            </div>
-                            <div className="mt-4 text-center">
-                                <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1">T-shirt</h3>
-                                <h2 className="text-gray-900 title-font text-lg font-medium">Shooting Stars</h2>
-                                <p className="mt-1">$21.15</p>
-                            </div>
-                        </div></Link>
-                        <Link href={`/product/wear-the-code`}><div className="p-4 w-full shadow-lg">
-                            <div className="block relative rounded overflow-hidden">
-                                <img alt="ecommerce" className="h-[45vh] w-[19.7vw] m-auto block" src="https://m.media-amazon.com/images/I/61DNXOmaMsL._SY879_.jpg"/>
-                            </div>
-                            <div className="mt-4 text-center">
-                                <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1">T-shirt</h3>
-                                <h2 className="text-gray-900 title-font text-lg font-medium">Shooting Stars</h2>
-                                <p className="mt-1">$21.15</p>
-                            </div>
-                        </div></Link>
-                        <Link href={`/product/wear-the-code`}><div className="p-4 w-full shadow-lg">
-                            <div className="block relative rounded overflow-hidden">
-                                <img alt="ecommerce" className="h-[45vh] w-[19.7vw] m-auto block" src="https://m.media-amazon.com/images/I/61DNXOmaMsL._SY879_.jpg"/>
-                            </div>
-                            <div className="mt-4 text-center">
-                                <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1">T-shirt</h3>
-                                <h2 className="text-gray-900 title-font text-lg font-medium">Shooting Stars</h2>
-                                <p className="mt-1">$21.15</p>
-                            </div>
-                        </div></Link>
-                    </div>
-                </div>
-            </section>
-        </div>
+        <Client products={products} />
     )
 }
 

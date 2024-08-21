@@ -49,6 +49,7 @@ export const CartProvider = ({ children }) => {
 
 		setCart(newCart)
 		saveCart(newCart)
+		console.log(newCart)
 
 		toast.success('Item added Successfully!', { position: "top-center", autoClose: 1500, hideProgressBar: false, closeOnClick: true, pauseOnHover: false, draggable: true, progress: undefined, theme: "light" });
 	}
@@ -83,7 +84,9 @@ export const CartProvider = ({ children }) => {
 	const buyNow = (itemCode, qty, price, name, size, variant) => {
 		saveCart({})
 
-		let newCart = { itemCode: { qty, price, name, size, variant } }
+		let newCart = {}
+		newCart[itemCode] = { qty, price, name, size, variant }
+		
 		setCart(newCart)
 		saveCart(newCart)
 

@@ -11,7 +11,7 @@ export default function Client(props) {
         <div>
             <section className="text-gray-600 body-font mt-32">
                 <div className="container px-5 mx-auto">
-                    {Object.keys(props.products).length === 0 && <p className='text-center'>Sorry! All the T-shirts are currently Out of Stock. New stock comming soon! Stay Tuned!</p>}
+                    {Object.keys(props.products).length === 0 && <p className='text-center'>Sorry! All the Mugs are currently Out of Stock. New stock comming soon! Stay Tuned!</p>}
                     <div className="flex flex-wrap mx-9 my-16 gap-5">
                         {Object.keys(props.products).map((product) => {
                             return <Link key={props.products[product]._id} href={`/product/${props.products[product].slug}`}><div className="p-4 w-full shadow-lg">
@@ -19,7 +19,7 @@ export default function Client(props) {
                                     <img alt="ecommerce" className="h-[45vh] w-[19.7vw] m-auto block" src={props.products[product].img} />
                                 </div>
                                 <div className="mt-4 text-center">
-                                    <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1">T-shirt</h3>
+                                    <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1">Mugs</h3>
                                     <h2 className="text-gray-900 title-font text-lg font-medium">{props.products[product].title}</h2>
                                     <p className="mt-1">₹{props.products[product].price}</p>
 
