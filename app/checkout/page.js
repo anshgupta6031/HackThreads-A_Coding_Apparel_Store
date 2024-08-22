@@ -96,7 +96,7 @@ export default function Checkout() {
                 <span className='total'>Subtotal: {subTotal}₹</span>
             </div>
 
-            <Link href='/checkout'><button className="flex mx-48 my-4 text-white bg-indigo-500 border-0 py-3 px-3 focus:outline-none hover:bg-indigo-600 rounded text-sm"><IoBagCheck className='mr-1 text-lg' />Pay ₹{subTotal}</button></Link>
+            <Link href='/order'><button className="flex mx-48 my-4 text-white bg-indigo-500 border-0 py-3 px-3 focus:outline-none hover:bg-indigo-600 rounded text-sm"><IoBagCheck className='mr-1 text-lg' />Pay ₹{subTotal}</button></Link>
 
         </div>
     )
