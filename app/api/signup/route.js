@@ -5,6 +5,7 @@
 import { NextResponse } from "next/server";
 import User from "@/models/User";
 import connectToMongo from "@/middleware/mongoose";
+import CryptoJS from "crypto-js";
 
 connectToMongo()
 
@@ -19,7 +20,9 @@ export async function POST(request) {
             return NextResponse.json({ success: false, error: "Email already exists!" })
         }
 
-        user = new User(data)
+        const {name, email} = data
+
+        user = new User({name, email, password: CryptoJS.AES.encrypt(data.password, "secret123").toString()})
         await user.save()
 
         return NextResponse.json({ success: true, user: user })

@@ -40,7 +40,6 @@ export default function Login() {
         })
 
         let json = await response.json()
-        console.log(json)
 
         if (json.success) {
             toast.success('Logged in Successfully.', { position: "top-center", autoClose: 1500, hideProgressBar: false, closeOnClick: true, pauseOnHover: false, draggable: true, progress: undefined, theme: "light" });

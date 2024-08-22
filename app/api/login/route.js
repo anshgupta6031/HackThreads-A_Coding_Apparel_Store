@@ -5,6 +5,7 @@
 import { NextResponse } from "next/server";
 import User from "@/models/User";
 import connectToMongo from "@/middleware/mongoose";
+import CryptoJS from "crypto-js";
 
 connectToMongo()
 
@@ -17,7 +18,7 @@ export async function POST(request) {
         let user = await User.findOne({ email: data.email })
 
         if (user) {
-            if (data.email === user.email && data.password === user.password) {
+            if (data.email === user.email && data.password === CryptoJS.AES.decrypt(user.password, "secret123").toString(CryptoJS.enc.Utf8)) {
                 return NextResponse.json({ success: true, email: user.email, name: user.name })
             }
 
