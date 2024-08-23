@@ -42,6 +42,7 @@ export default function Login() {
         let json = await response.json()
 
         if (json.success) {
+            localStorage.setItem("hackthreads_token", json.token)
             toast.success('Logged in Successfully.', { position: "top-center", autoClose: 1500, hideProgressBar: false, closeOnClick: true, pauseOnHover: false, draggable: true, progress: undefined, theme: "light" });
             Router.push("/")
         }

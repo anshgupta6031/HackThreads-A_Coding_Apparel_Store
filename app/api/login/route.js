@@ -6,6 +6,7 @@ import { NextResponse } from "next/server";
 import User from "@/models/User";
 import connectToMongo from "@/middleware/mongoose";
 import CryptoJS from "crypto-js";
+var jwt = require('jsonwebtoken');
 
 connectToMongo()
 
@@ -19,7 +20,8 @@ export async function POST(request) {
 
         if (user) {
             if (data.email === user.email && data.password === CryptoJS.AES.decrypt(user.password, "secret123").toString(CryptoJS.enc.Utf8)) {
-                return NextResponse.json({ success: true, email: user.email, name: user.name })
+                var token = jwt.sign({ email: user.email, name: user.name }, 'jwtsecret', { expiresIn: "2d" });
+                return NextResponse.json({ success: true, token })
             }
 
             return NextResponse.json({ success: false, error: "Invalid Credentials..." })
