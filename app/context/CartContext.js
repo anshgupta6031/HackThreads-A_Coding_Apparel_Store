@@ -19,6 +19,7 @@ export const CartProvider = ({ children }) => {
 	const [cart, setCart] = useState({})
 	const [subTotal, setSubTotal] = useState(0)
 	const [user, setUser] = useState({ value: null })
+	const [progress, setProgress] = useState(0)
 
 
 	const saveCart = (newCart) => {
@@ -135,7 +136,7 @@ export const CartProvider = ({ children }) => {
 
 
 	return (
-		<CartContext.Provider value={{ cart, subTotal, addToCart, removeFromCart, clearCart, buyNow, user, logout }}>
+		<CartContext.Provider value={{ cart, subTotal, addToCart, removeFromCart, clearCart, buyNow, user, logout, setProgress, progress }}>
 			{children}
 		</CartContext.Provider>
 	)

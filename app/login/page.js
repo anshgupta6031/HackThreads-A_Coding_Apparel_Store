@@ -4,7 +4,7 @@
 
 import Link from 'next/link'
 import { useRouter } from 'next/navigation';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -52,6 +52,13 @@ export default function Login() {
         setEmail("")
         setPassword("")
     }
+
+
+    useEffect(() => {
+        if (localStorage.getItem("hackthreads_token")) {
+            Router.push("/")
+        }
+    }, [])
 
 
     return (

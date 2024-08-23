@@ -3,7 +3,8 @@
 
 
 import Link from 'next/link'
-import React, { useState } from 'react'
+import { useRouter } from 'next/navigation';
+import React, { useEffect, useState } from 'react'
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -40,13 +41,24 @@ export default function Signup() {
 
         let json = await response.json()
 
-        if (json.success) toast.success('Account created Successfully.', { position: "top-center", autoClose: 1500, hideProgressBar: false, closeOnClick: true, pauseOnHover: false, draggable: true, progress: undefined, theme: "light" });
+        if (json.success){
+            toast.success('Account created Successfully.', { position: "top-center", autoClose: 1500, hideProgressBar: false, closeOnClick: true, pauseOnHover: false, draggable: true, progress: undefined, theme: "light" });
+            Router.push("/login")
+        }
         else toast.error(json.error, { position: "top-center", autoClose: 1500, hideProgressBar: false, closeOnClick: true, pauseOnHover: false, draggable: true, progress: undefined, theme: "light" });
 
         setName("")
         setEmail("")
         setPassword("")
     }
+
+    const Router = useRouter()
+
+    useEffect(() => {
+        if (localStorage.getItem("hackthreads_token")) {
+            Router.push("/")
+        }
+    }, [])
 
 
     return (

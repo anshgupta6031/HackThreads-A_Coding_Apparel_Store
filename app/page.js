@@ -1,8 +1,20 @@
+"use client"
 
 
+
+import { useContext, useEffect } from "react"
+import { CartContext } from "./context/CartContext"
 
 
 export default function Home() {
+
+    const { setProgress } = useContext(CartContext)
+
+    useEffect(() => {
+        setProgress(100)
+    }, [])
+    
+
     return (
         <>
             <section className="text-gray-600 body-font mt-10">

@@ -1,12 +1,23 @@
-
+"use client"
 
 
 
 import Link from 'next/link'
-import React from 'react'
+import { useRouter } from 'next/navigation'
+import React, { useEffect } from 'react'
 
 
 export default function Forgot() {
+
+    const Router = useRouter()
+
+    useEffect(() => {
+        if (localStorage.getItem("hackthreads_token")) {
+            Router.push("/")
+        }
+    }, [])
+
+
     return (
 
         <div className="min-h-screen rounded-3xl bg-gray-100 flex items-center justify-center">
