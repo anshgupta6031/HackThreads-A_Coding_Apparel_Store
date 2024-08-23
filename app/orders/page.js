@@ -3,16 +3,21 @@
 
 
 import React from 'react'
+import Client from './Client'
+import Order from '@/models/Order';
+import connectToMongo from "@/middleware/mongoose";
 
-export default function Orders() {
+
+export default async function Orders() {
+
+    await connectToMongo()
+
+    let orders = await Order.find()
+
+
     return (
-        <div className='my-96'>
-            this is orders
-        </div>
+        <Client orders={orders} />
     )
 }
-
-
-
 
 
