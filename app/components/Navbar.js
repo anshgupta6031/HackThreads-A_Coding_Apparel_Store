@@ -4,7 +4,7 @@
 
 "use client"
 
-import React, { useContext, useRef } from 'react'
+import React, { useContext, useRef, useState } from 'react'
 import Link from 'next/link'
 import { AiOutlineShoppingCart } from "react-icons/ai"
 import { IoCloseCircleOutline } from "react-icons/io5"
@@ -19,7 +19,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 export default function Navbar() {
 
-    const { cart, addToCart, removeFromCart, clearCart, subTotal } = useContext(CartContext)
+    const { cart, addToCart, removeFromCart, clearCart, subTotal, user, logout } = useContext(CartContext)
 
     const ref = useRef()
 
@@ -34,6 +34,9 @@ export default function Navbar() {
             ref.current.classList.add("translate-x-full")
         }
     }
+
+
+    const [dropdown, setDropdown] = useState(false)
 
 
     return (
@@ -54,12 +57,25 @@ export default function Navbar() {
                         <Link href="/mugs" className="mr-5 hover:text-gray-900">Mugs</Link>
                     </nav>
 
-                    <Link href="/login"><button className="inline-flex items-center bg-gray-200 border-0 py-[0.3rem] px-[0.5rem] focus:outline-none hover:bg-gray-300 rounded text-base mt-4 md:mt-0 mr-4 font-semibold">My Account
-                        <MdAccountCircle className='text-[1.3rem] ml-2' />
-                    </button></Link>
+                    {user.value && <button onMouseOver={() => { setDropdown(true) }} onMouseLeave={() => { setDropdown(false) }} className="inline-flex items-center bg-gray-200 border-0 py-[0.3rem] px-[0.5rem] focus:outline-none hover:bg-gray-300 rounded text-base mt-4 md:mt-0 mr-4 font-semibold">
+                        My Account<MdAccountCircle className='text-[1.3rem] ml-2' />
+                    </button>}
+
+                    {!user.value && <Link href="/login"><button className="inline-flex items-center bg-gray-200 border-0 py-[0.3rem] px-[0.5rem] focus:outline-none hover:bg-gray-300 rounded text-base mt-4 md:mt-0 mr-4 font-semibold">
+                        Login
+                    </button></Link>}
+
                     <button onClick={toggleCart} className="inline-flex items-center bg-gray-200 border-0 py-1 px-3 focus:outline-none hover:bg-gray-300 rounded text-base mt-4 md:mt-0 font-semibold">Cart
                         <AiOutlineShoppingCart className='ml-2' />
                     </button>
+
+                    {dropdown && <div onMouseOver={() => { setDropdown(true) }} onMouseLeave={() => { setDropdown(false) }} className="absolute right-48 top-[3.4rem] rounded-md px-5 py-3 w-36 bg-gray-300">
+                        <ul>
+                            <Link href={"/myaccount"}><li className='py-1 hover:text-black hover:font-semibold hover:cursor-pointer'>My Account</li></Link>
+                            <Link href={"/orders"}><li className='py-1 hover:text-black hover:font-semibold hover:cursor-pointer'>Orders</li></Link>
+                            <li onClick={logout} className='py-1 hover:text-black hover:font-semibold hover:cursor-pointer'>Logout</li>
+                        </ul>
+                    </div>}
 
                     <div ref={ref} className="sideCart overflow-y-scroll fixed top-0 right-0 w-80 h-full bg-indigo-100 px-8 py-10 transform transition-transform translate-x-full z-20 opacity-[0.99]">
                         <h2 className='font-bold text-xl text-center'>Shopping Cart</h2>

@@ -5,7 +5,7 @@
 "use client"
 
 import React, { createContext, useState, useEffect } from "react"
-import { useRouter } from 'next/navigation'
+import { useRouter, usePathname } from 'next/navigation'
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -18,6 +18,7 @@ export const CartProvider = ({ children }) => {
 
 	const [cart, setCart] = useState({})
 	const [subTotal, setSubTotal] = useState(0)
+	const [user, setUser] = useState({ value: null })
 
 
 	const saveCart = (newCart) => {
@@ -80,17 +81,26 @@ export const CartProvider = ({ children }) => {
 
 
 	const router = useRouter()
+	const pathname = usePathname()
 
 	const buyNow = (itemCode, qty, price, name, size, variant) => {
 		saveCart({})
 
 		let newCart = {}
 		newCart[itemCode] = { qty, price, name, size, variant }
-		
+
 		setCart(newCart)
 		saveCart(newCart)
 
 		router.push('/checkout')
+	}
+
+
+	const logout = () => {
+		localStorage.removeItem("hackthreads_token")
+		setUser({ value: null })
+		toast.success('Logged out Successfully.', { position: "top-center", autoClose: 1500, hideProgressBar: false, closeOnClick: true, pauseOnHover: false, draggable: true, progress: undefined, theme: "light" });
+		router.push("/")
 	}
 
 
@@ -110,17 +120,22 @@ export const CartProvider = ({ children }) => {
 
 				setSubTotal(subt)
 			}
+
+			const token = localStorage.getItem("hackthreads_token")
+			if (token) {
+				setUser({ value: token })
+			}
 		}
 
 		catch (error) {
 			console.error(error)
 			localStorage.clear()
 		}
-	}, [])
+	}, [pathname])
 
 
 	return (
-		<CartContext.Provider value={{ cart, subTotal, addToCart, removeFromCart, clearCart, buyNow }}>
+		<CartContext.Provider value={{ cart, subTotal, addToCart, removeFromCart, clearCart, buyNow, user, logout }}>
 			{children}
 		</CartContext.Provider>
 	)
