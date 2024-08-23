@@ -29,7 +29,7 @@ export default function Login() {
 
         const formBody = { email, password }
 
-        const response = await fetch("http://localhost:3000/api/login", {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/login`, {
             method: "POST",
 
             headers: {

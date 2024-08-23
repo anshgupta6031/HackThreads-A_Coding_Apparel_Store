@@ -20,7 +20,7 @@ export default function Client({ params, variants, product }) {
 
 
     const checkServiceability = async () => {
-        let pins = await fetch("http://localhost:3000/api/pincode")
+        let pins = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/pincode`)
         let pinsJson = await pins.json()
 
         if (pinsJson.includes(parseInt(pin))) {
@@ -41,7 +41,7 @@ export default function Client({ params, variants, product }) {
 
 
     const refreshVariant = (newSize, newColor) => {
-        let url = `http://localhost:3000/product/${variants[newColor][newSize]['slug']}`
+        let url = `${process.env.NEXT_PUBLIC_HOST}/product/${variants[newColor][newSize]['slug']}`
         window.location = url
     }
 
