@@ -9,6 +9,9 @@ import { CartContext } from "../context/CartContext"
 import Script from 'next/script'
 import { initiate } from '../actions/useractions'
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 export default function Client() {
 
@@ -58,6 +61,12 @@ export default function Client() {
 
         //  Get the order Id
         let a = await initiate(email, cart, address, amount)
+
+        if(!a){                 //  cart is tempered....
+            toast.error('The price of some items in your cart is changed. Please clear the cart and try again.', { position: "top-center", autoClose: 3500, hideProgressBar: false, closeOnClick: true, pauseOnHover: false, draggable: true, progress: undefined, theme: "light" });
+            return
+        }
+
         let orderId = a.id
 
         var options = {
