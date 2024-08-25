@@ -7,7 +7,6 @@ import React from 'react'
 
 export default function Client({ order }) {
 
-    console.log(order)
     let products = order.products
 
     return (
