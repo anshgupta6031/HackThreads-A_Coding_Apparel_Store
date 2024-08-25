@@ -19,8 +19,8 @@ export async function POST(request) {
         let user = await User.findOne({ email: data.email })
 
         if (user) {
-            if (data.email === user.email && data.password === CryptoJS.AES.decrypt(user.password, "secret123").toString(CryptoJS.enc.Utf8)) {
-                var token = jwt.sign({ email: user.email, name: user.name }, 'jwtsecret', { expiresIn: "2d" });
+            if (data.email === user.email && data.password === CryptoJS.AES.decrypt(user.password, process.env.AES_SECRET).toString(CryptoJS.enc.Utf8)) {
+                var token = jwt.sign({ email: user.email, name: user.name }, process.env.JWT_SECRET, { expiresIn: "2d" });
                 return NextResponse.json({ success: true, token })
             }
 

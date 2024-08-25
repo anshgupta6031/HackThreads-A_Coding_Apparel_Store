@@ -30,7 +30,7 @@ export const POST = async (request) => {
     if (xx) {
         //  Update payment Status.....
         await Order.findOneAndUpdate({ orderId: body.razorpay_order_id }, { status: "Success" }, { new: true })
-        return NextResponse.redirect(`${process.env.NEXT_PUBLIC_HOST}/order`)
+        return NextResponse.redirect(`${process.env.NEXT_PUBLIC_HOST}/order?id=${body.razorpay_order_id}`)
     }
 
     else {
