@@ -15,7 +15,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 export default function Client() {
 
-    const { cart, addToCart, removeFromCart, clearCart, subTotal } = useContext(CartContext)
+    const { cart, addToCart, removeFromCart, clearCart, subTotal, setCart, saveCart } = useContext(CartContext)
 
 
     const [name, setName] = useState('')
@@ -63,7 +63,9 @@ export default function Client() {
         let a = await initiate(email, cart, address, amount)
 
         if(!a){                 //  cart is tempered....
-            toast.error('The price of some items in your cart is changed. Please clear the cart and try again.', { position: "top-center", autoClose: 3500, hideProgressBar: false, closeOnClick: true, pauseOnHover: false, draggable: true, progress: undefined, theme: "light" });
+            toast.error('The price of some items in your cart is changed. Please try again.', { position: "top-center", autoClose: 3500, hideProgressBar: false, closeOnClick: true, pauseOnHover: false, draggable: true, progress: undefined, theme: "light" });
+            setCart({})
+		    saveCart({})
             return
         }
 
