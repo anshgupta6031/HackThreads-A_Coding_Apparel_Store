@@ -8,7 +8,15 @@ import { NextResponse } from "next/server";
 export async function GET(request) {
 
     try {
-        return NextResponse.json([224141, 224122, 223355, 885522, 123456])
+
+        let pincodes = {
+            "224141": ["Goshainganj", "Uttar Pradesh"],
+            "110003": ["Delhi", "Delhi"],
+            "000000": ["Burtalla", "Tripura"],
+        }
+
+
+        return NextResponse.json(pincodes)
     }
 
     catch (error) {

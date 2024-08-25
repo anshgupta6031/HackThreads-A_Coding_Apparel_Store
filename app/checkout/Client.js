@@ -26,12 +26,29 @@ export default function Client() {
     const [disabled, setDisabled] = useState(true)
 
 
-    const handleChange = (e) => {
+    const handleChange = async (e) => {
+
         if (e.target.name == 'name') setName(e.target.value)
         if (e.target.name == 'email') setEmail(e.target.value)
         if (e.target.name == 'phone') setPhone(e.target.value)
         if (e.target.name == 'address') setAddress(e.target.value)
-        if (e.target.name == 'pincode') setPincode(e.target.value)
+
+        if (e.target.name == 'pincode') {
+            setPincode(e.target.value)
+
+            let pins = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/pincode`)
+            let pinsJson = await pins.json()
+
+            if (Object.keys(pinsJson).includes(e.target.value)) {
+                setCity(pinsJson[e.target.value][0])
+                setState(pinsJson[e.target.value][1])
+            }
+
+            else {
+                setCity('')
+                setState('')
+            }
+        }
 
         if (name.length > 2 && email.length > 2 && phone.length > 2 && address.length > 2 && pincode.length > 2) setDisabled(false)
     }
@@ -124,14 +141,14 @@ export default function Client() {
                     <div className="px-2 w-1/2">
                         <div className="mb-4">
                             <label htmlFor="state" className="leading-7 text-sm text-gray-600">State</label>
-                            <input readOnly value={state} type="text" id="state" name="state" className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
+                            <input onChange={handleChange} value={state} type="text" id="state" name="state" className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
                         </div>
                     </div>
 
                     <div className="px-2 w-1/2">
                         <div className="mb-4">
                             <label htmlFor="city" className="leading-7 text-sm text-gray-600">City</label>
-                            <input readOnly value={city} type="text" id="city" name="city" className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
+                            <input onChange={handleChange} value={city} type="text" id="city" name="city" className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
                         </div>
                     </div>
                 </div>

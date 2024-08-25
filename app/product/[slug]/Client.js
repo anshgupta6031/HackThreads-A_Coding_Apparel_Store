@@ -23,7 +23,7 @@ export default function Client({ params, variants, product }) {
         let pins = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/pincode`)
         let pinsJson = await pins.json()
 
-        if (pinsJson.includes(parseInt(pin))) {
+        if (Object.keys(pinsJson).includes(pin)) {
             setServiceability(true)
             toast.success('yay! This pincode is serviceable.', { position: "top-center", autoClose: 1500, hideProgressBar: false, closeOnClick: true, pauseOnHover: false, draggable: true, progress: undefined, theme: "light" });
         }
