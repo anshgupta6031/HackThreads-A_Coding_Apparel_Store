@@ -2,12 +2,23 @@
 
 
 
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
+import { CartContext } from '../context/CartContext'
 
 
-export default function Client({ order }) {
+export default function Client({ order, clearcart }) {
 
     let products = order.products
+
+    const { setCart, saveCart } = useContext(CartContext)
+
+    useEffect(() => {
+        if (clearcart) {
+            setCart({})
+            saveCart({})
+        }
+    }, [])
+
 
     return (
         <section className="text-gray-600 body-font overflow-hidden mt-7">

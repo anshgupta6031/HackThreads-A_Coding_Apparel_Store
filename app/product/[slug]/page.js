@@ -12,8 +12,8 @@ export default async function Product({ params }) {
 
     await connectToMongo()
 
-    let product = await ProductModel.findOne({ slug: params.slug })
-    let variants = await ProductModel.find({ title: product.title, category: product.category })
+    let product = await ProductModel.findOne({ slug: params.slug, availableQty: { $gt: 0 } })
+    let variants = await ProductModel.find({ title: product.title, category: product.category, availableQty: { $gt: 0 } })
 
     let colorSizeSlug = {}              //  {red: {XL: {slug: "wear-the-code"}}}
 
