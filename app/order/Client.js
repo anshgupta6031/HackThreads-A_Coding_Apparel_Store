@@ -28,7 +28,8 @@ export default function Client({ order, clearcart }) {
                         <h2 className="text-sm title-font text-gray-500 tracking-widest">HACKTHREADS</h2>
                         <h1 className="text-gray-900 text-3xl title-font font-medium mb-4 mt-2">Order Id: {order.orderId}</h1>
                         <p className="leading-relaxed">Congratulations!!! Your order has been Successfully placed...</p>
-                        <p className="leading-relaxed mb-5">Your payment status is : {order.status}.</p>
+                        <p className="leading-relaxed">Your payment status is : {order.status}.</p>
+                        <p className="leading-relaxed mb-5">Order Placed on : {(new Date(order.createdAt)).toLocaleDateString("en-IN", {weekday: 'long', year: 'numeric', month: 'numeric', day: 'numeric'})}.</p>
 
                         <div className="flex mb-1 font-semibold justify-evenly">
                             <a className="flex-grow border-gray-300 py-2 text-lg px-1">Item Description</a>

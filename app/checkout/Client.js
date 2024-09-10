@@ -2,7 +2,7 @@
 
 
 
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { FiPlusCircle, FiMinusCircle } from "react-icons/fi"
 import { IoBagCheck } from "react-icons/io5"
 import { CartContext } from "../context/CartContext"
@@ -52,9 +52,14 @@ export default function Client() {
                 setState('')
             }
         }
-
-        if (name.length > 2 && email.length > 2 && phone.length > 2 && address.length > 2 && pincode.length > 2) setDisabled(false)
     }
+    
+    
+    useEffect(() => {
+        if (name.length > 2 && email.length > 2 && phone.length > 2 && address.length > 2 && pincode.length > 2) setDisabled(false)
+        else setDisabled(true)
+    }, [name, email, phone, address, pincode])
+
 
 
     const pay = async (amount) => {
