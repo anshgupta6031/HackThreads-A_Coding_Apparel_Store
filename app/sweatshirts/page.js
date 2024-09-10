@@ -36,6 +36,11 @@ export default async function Sweatshirts() {
                 sweatshirts[item.title].color = [item.color]
                 sweatshirts[item.title].size = [item.size]
             }
+
+            else{
+                sweatshirts[item.title].color = []
+                sweatshirts[item.title].size = []
+            }
         }
     }
 

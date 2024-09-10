@@ -48,6 +48,13 @@ const OrderSchema = new mongoose.Schema({         //  a schema is defined.......
         default: "Pending",
     },
 
+
+    deliveryStatus: {
+        type: String,
+        required: true,
+        default: "unshipped",
+    },
+
 }, {                                         //  built-in data fields.....
     versionKey: false,
     timestamps: true,

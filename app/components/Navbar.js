@@ -105,8 +105,8 @@ export default function Navbar() {
                         <div className='total font-medium mt-8 mx-6'>Subtotal: {subTotal}₹</div>
 
                         <div className="flex mt-8 justify-center">
-                            <Link href='/checkout'><button onClick={toggleCart} className="flex mx-2 text-white bg-indigo-500 border-0 py-3 px-3 focus:outline-none hover:bg-indigo-600 rounded text-sm"><IoBagCheck className='mr-1 text-lg' />Checkout</button></Link>
-                            <button onClick={clearCart} className="flex mx-2 text-white bg-indigo-500 border-0 py-3 px-3 focus:outline-none hover:bg-indigo-600 rounded text-sm">Clear Cart</button>
+                            <Link href='/checkout'><button disabled={Object.keys(cart).length === 0} onClick={toggleCart} className="disabled:bg-blue-400 flex mx-2 text-white bg-indigo-500 border-0 py-3 px-3 focus:outline-none hover:bg-indigo-600 rounded text-sm"><IoBagCheck className='mr-1 text-lg' />Checkout</button></Link>
+                            <button disabled={Object.keys(cart).length === 0} onClick={clearCart} className="disabled:bg-blue-400 flex mx-2 text-white bg-indigo-500 border-0 py-3 px-3 focus:outline-none hover:bg-indigo-600 rounded text-sm">Clear Cart</button>
                         </div>
                     </div>
                 </div>

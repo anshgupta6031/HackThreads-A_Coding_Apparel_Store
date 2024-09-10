@@ -36,6 +36,11 @@ export default async function Mugs() {
                 mugs[item.title].color = [item.color]
                 mugs[item.title].size = [item.size]
             }
+
+            else{
+                mugs[item.title].color = []
+                mugs[item.title].size = []
+            }
         }
     }
 

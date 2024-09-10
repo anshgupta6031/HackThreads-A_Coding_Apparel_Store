@@ -59,6 +59,18 @@ export default function Client() {
 
     const pay = async (amount) => {
 
+        //  check if the details are valid.....
+        if(phone.length !== 10 || isNaN(phone)){
+            toast.error('Incorect Phone Number!', { position: "top-center", autoClose: 3500, hideProgressBar: false, closeOnClick: true, pauseOnHover: false, draggable: true, progress: undefined, theme: "light" });
+            return
+        }
+
+        if(pincode.length !== 6 || isNaN(pincode)){
+            toast.error('Incorect PinCode!', { position: "top-center", autoClose: 3500, hideProgressBar: false, closeOnClick: true, pauseOnHover: false, draggable: true, progress: undefined, theme: "light" });
+            return
+        }
+
+
         //  Get the order Id
         let a = await initiate(email, cart, address, amount)
 
@@ -113,14 +125,14 @@ export default function Client() {
                     <div className="px-2 w-1/2">
                         <div className="mb-4">
                             <label htmlFor="name" className="leading-7 text-sm text-gray-600">Name</label>
-                            <input onChange={handleChange} value={name} type="text" id="name" name="name" className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
+                            <input onChange={handleChange} placeholder="Enter your Name." value={name} type="text" id="name" name="name" className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
                         </div>
                     </div>
 
                     <div className="px-2 w-1/2">
                         <div className="mb-4">
                             <label htmlFor="email" className="leading-7 text-sm text-gray-600">Email</label>
-                            <input onChange={handleChange} value={email} type="email" id="email" name="email" className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
+                            <input onChange={handleChange} placeholder="Enter your email." value={email} type="email" id="email" name="email" className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
                         </div>
                     </div>
                 </div>
@@ -128,7 +140,7 @@ export default function Client() {
                 <div className="px-2 w-full">
                     <div className="mb-4">
                         <label htmlFor="address" className="leading-7 text-sm text-gray-600">Address</label>
-                        <textarea onChange={handleChange} value={address} cols="30" rows="2" id="address" name="address" className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"></textarea>
+                        <textarea onChange={handleChange} placeholder="Enter your address." value={address} cols="30" rows="2" id="address" name="address" className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"></textarea>
                     </div>
                 </div>
 
@@ -136,14 +148,14 @@ export default function Client() {
                     <div className="px-2 w-1/2">
                         <div className="mb-4">
                             <label htmlFor="phone" className="leading-7 text-sm text-gray-600">Phone</label>
-                            <input onChange={handleChange} value={phone} type="text" id="phone" name="phone" className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
+                            <input onChange={handleChange} placeholder="Enter your 10 digit phone number." value={phone} type="text" id="phone" name="phone" className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
                         </div>
                     </div>
 
                     <div className="px-2 w-1/2">
                         <div className="mb-4">
                             <label htmlFor="pincode" className="leading-7 text-sm text-gray-600">PinCode</label>
-                            <input onChange={handleChange} value={pincode} type="text" id="pincode" name="pincode" className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
+                            <input onChange={handleChange} placeholder="Enter your 6 digit pincode." value={pincode} type="text" id="pincode" name="pincode" className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
                         </div>
                     </div>
                 </div>
@@ -158,7 +170,7 @@ export default function Client() {
 
                     <div className="px-2 w-1/2">
                         <div className="mb-4">
-                            <label htmlFor="city" className="leading-7 text-sm text-gray-600">City</label>
+                            <label htmlFor="city" className="leading-7 text-sm text-gray-600">District</label>
                             <input onChange={handleChange} value={city} type="text" id="city" name="city" className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
                         </div>
                     </div>
@@ -186,7 +198,7 @@ export default function Client() {
                     <span className='total'>Subtotal: {subTotal}₹</span>
                 </div>
 
-                <button onClick={() => { pay(subTotal * 100) }} disabled={disabled} className="disabled:bg-blue-400 flex mx-48 my-4 text-white bg-indigo-500 border-0 py-3 px-3 focus:outline-none hover:bg-indigo-600 rounded text-sm"><IoBagCheck className='mr-1 text-lg' />Pay ₹{subTotal}</button>
+                <button onClick={() => { pay(subTotal * 100) }} disabled={disabled || subTotal===0} className="disabled:bg-blue-400 flex mx-48 my-4 text-white bg-indigo-500 border-0 py-3 px-3 focus:outline-none hover:bg-indigo-600 rounded text-sm"><IoBagCheck className='mr-1 text-lg' />Pay ₹{subTotal}</button>
 
             </div>
         </>
