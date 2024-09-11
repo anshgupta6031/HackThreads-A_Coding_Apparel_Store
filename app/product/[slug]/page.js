@@ -13,6 +13,7 @@ export default async function Product({ params }) {
     await connectToMongo()
 
     let product = await ProductModel.findOne({ slug: params.slug, availableQty: { $gt: 0 } })
+    if(!product) return <Client error={404} />                //  if the product is not available or does not exist.....
     let variants = await ProductModel.find({ title: product.title, category: product.category, availableQty: { $gt: 0 } })
 
     let colorSizeSlug = {}              //  {red: {XL: {slug: "wear-the-code"}}}

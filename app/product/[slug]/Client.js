@@ -4,12 +4,17 @@
 
 import React, { useContext, useState } from "react"
 import { CartContext } from "../../context/CartContext"
+import Error from "next/error";
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 
-export default function Client({ params, variants, product }) {
+export default function Client({ params, variants, product, error }) {
+
+    if(error == 404){
+        return <Error statusCode={404} />
+    }
 
     const { addToCart, buyNow } = useContext(CartContext)
 
