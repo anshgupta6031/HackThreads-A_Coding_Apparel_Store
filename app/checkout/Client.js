@@ -8,6 +8,7 @@ import { IoBagCheck } from "react-icons/io5"
 import { CartContext } from "../context/CartContext"
 import Script from 'next/script'
 import { initiate } from '../actions/useractions'
+import pincodes from '../../pincodes.json'
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -72,6 +73,12 @@ export default function Client() {
 
         if(pincode.length !== 6 || isNaN(pincode)){
             toast.error('Incorect PinCode!', { position: "top-center", autoClose: 3500, hideProgressBar: false, closeOnClick: true, pauseOnHover: false, draggable: true, progress: undefined, theme: "light" });
+            return
+        }
+
+        //  check if the pincode is serviceable.....
+        if(!Object.keys(pincodes).includes(pincode)){
+            toast.error('This Pincode is not Serviceable.', { position: "top-center", autoClose: 3500, hideProgressBar: false, closeOnClick: true, pauseOnHover: false, draggable: true, progress: undefined, theme: "light" });
             return
         }
 

@@ -3,19 +3,12 @@
 
 
 import { NextResponse } from "next/server";
+import pincodes from '../../../pincodes.json'
 
 
 export async function GET(request) {
 
     try {
-
-        let pincodes = {
-            "224141": ["Goshainganj", "Uttar Pradesh"],
-            "110003": ["Delhi", "Delhi"],
-            "000000": ["Burtalla", "Tripura"],
-        }
-
-
         return NextResponse.json(pincodes)
     }
 
