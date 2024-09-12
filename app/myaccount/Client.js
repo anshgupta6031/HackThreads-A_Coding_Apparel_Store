@@ -27,6 +27,8 @@ export default function Client() {
     const [pincode, setPincode] = useState('')
     const [password, setPassword] = useState('')
     const [cpassword, setCpassword] = useState('')
+    const [npassword, setNpassword] = useState('')
+    const [cnpassword, setCnpassword] = useState('')
 
 
     const handleChange = async (e) => {
@@ -36,6 +38,8 @@ export default function Client() {
         if (e.target.name == 'pincode') setPincode(e.target.value)
         if (e.target.name == 'password') setPassword(e.target.value)
         if (e.target.name == 'cpassword') setCpassword(e.target.value)
+        if (e.target.name == 'npassword') setNpassword(e.target.value)
+        if (e.target.name == 'cnpassword') setCnpassword(e.target.value)
     }
 
 
@@ -93,6 +97,40 @@ export default function Client() {
     }
 
 
+    const handlePasswordSubmit = async (e) => {
+        e.preventDefault()
+
+        if (password !== cpassword) {
+            toast.error('Current Passwords do not match', { position: "top-center", autoClose: 1500, hideProgressBar: false, closeOnClick: true, pauseOnHover: false, draggable: true, progress: undefined, theme: "light" });
+            return
+        }
+
+        if (npassword !== cnpassword) {
+            toast.error('New Passwords do not match', { position: "top-center", autoClose: 1500, hideProgressBar: false, closeOnClick: true, pauseOnHover: false, draggable: true, progress: undefined, theme: "light" });
+            return
+        }
+
+        const token = localStorage.getItem("hackthreads_token")
+
+        const formBody = { token: token, password: password, npassword: npassword }
+
+        const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/updatepassword`, {
+            method: "POST",
+
+            headers: {
+                "Content-Type": "application/json",
+            },
+
+            body: JSON.stringify(formBody)
+        })
+
+        let json = await response.json()
+
+        if(json.success) toast.success('Password Updated Successfully.', { position: "top-center", autoClose: 1500, hideProgressBar: false, closeOnClick: true, pauseOnHover: false, draggable: true, progress: undefined, theme: "light" });
+        else toast.error('Wrong Password.', { position: "top-center", autoClose: 1500, hideProgressBar: false, closeOnClick: true, pauseOnHover: false, draggable: true, progress: undefined, theme: "light" });
+    }
+
+
     return (
         <>
             <div className='container mt-28 w-[85%] m-auto mb-20'>
@@ -139,7 +177,7 @@ export default function Client() {
                     </div>
                 </div>
 
-                <button onClick={handleUserSubmit} className="disabled:bg-blue-400 flex mx-4 my-3 text-white bg-indigo-500 border-0 py-2 px-3 focus:outline-none hover:bg-indigo-600 rounded text-sm">Submit</button>
+                <button onClick={handleUserSubmit} className="disabled:bg-blue-400 flex mx-4 my-3 text-white bg-indigo-500 border-0 py-2 px-3 focus:outline-none hover:bg-indigo-600 rounded text-sm">Save</button>
 
 
 
@@ -148,20 +186,36 @@ export default function Client() {
                 <div className='mx-auto flex my-3'>
                     <div className="px-2 w-1/2">
                         <div className="mb-4">
-                            <label htmlFor="password" className="leading-7 text-sm text-gray-600">New Password</label>
-                            <input onChange={handleChange} placeholder="Enter new Password." value={password} type="password" id="password" name="password" className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
+                            <label htmlFor="password" className="leading-7 text-sm text-gray-600">Current Password</label>
+                            <input onChange={handleChange} placeholder="Enter old Password." value={password} type="password" id="password" name="password" className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
                         </div>
                     </div>
 
                     <div className="px-2 w-1/2">
                         <div className="mb-4">
                             <label htmlFor="cpassword" className="leading-7 text-sm text-gray-600">Confirm Password</label>
-                            <input onChange={handleChange} placeholder="Confirm Password." value={cpassword} type="password" id="cpassword" name="cpassword" className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
+                            <input onChange={handleChange} placeholder="Confirm old Password." value={cpassword} type="password" id="cpassword" name="cpassword" className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
                         </div>
                     </div>
                 </div>
 
-                <button className="disabled:bg-blue-400 flex mx-4 mt-3 mb-32 text-white bg-indigo-500 border-0 py-2 px-3 focus:outline-none hover:bg-indigo-600 rounded text-sm">Submit</button>
+                <div className='mx-auto flex my-3'>
+                    <div className="px-2 w-1/2">
+                        <div className="mb-4">
+                            <label htmlFor="npassword" className="leading-7 text-sm text-gray-600">New Password</label>
+                            <input onChange={handleChange} placeholder="Enter New Password." value={npassword} type="password" id="npassword" name="npassword" className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
+                        </div>
+                    </div>
+
+                    <div className="px-2 w-1/2">
+                        <div className="mb-4">
+                            <label htmlFor="cnpassword" className="leading-7 text-sm text-gray-600">Confirm New Password</label>
+                            <input onChange={handleChange} placeholder="Confirm new Password." value={cnpassword} type="password" id="cnpassword" name="cnpassword" className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
+                        </div>
+                    </div>
+                </div>
+
+                <button onClick={handlePasswordSubmit} className="disabled:bg-blue-400 flex mx-4 mt-3 mb-32 text-white bg-indigo-500 border-0 py-2 px-3 focus:outline-none hover:bg-indigo-600 rounded text-sm">Update</button>
             </div>
         </>
     )
