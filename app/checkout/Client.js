@@ -164,7 +164,7 @@ export default function Client() {
             <Script src="https://checkout.razorpay.com/v1/checkout.js"></Script>
 
 
-            <div className='container mt-28 w-[85%] m-auto mb-20'>
+            <div className='container mt-28 w-[85%] m-auto mb-20 min-h-screen'>
                 <h1 className='font-bold text-3xl text-center'>Checkout</h1>
 
                 <h2 className='font-semibold text-xl mt-4'>1. Delivery Details</h2>

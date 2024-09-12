@@ -9,7 +9,7 @@ import Link from 'next/link'
 export default function Client(props) {
     return (
         <div>
-            <section className="text-gray-600 body-font mt-32">
+            <section className="text-gray-600 body-font mt-32 min-h-screen">
                 <div className="container px-5 mx-auto">
                     {Object.keys(props.products).length === 0 && <p className='text-center'>Sorry! All the T-shirts are currently Out of Stock. New stock comming soon! Stay Tuned!</p>}
                     <div className="flex flex-wrap mx-9 my-16 gap-5">

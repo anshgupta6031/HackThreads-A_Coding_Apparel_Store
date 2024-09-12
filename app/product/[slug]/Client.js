@@ -53,7 +53,7 @@ export default function Client({ params, variants, product, error }) {
 
     return (
         <div>
-            <section className="text-gray-600 body-font overflow-hidden mt-14">
+            <section className="text-gray-600 body-font overflow-hidden mt-14 min-h-screen">
                 <div className="container px-5 py-20 mx-auto">
                     <div className="lg:w-4/5 mx-auto flex flex-wrap">
                         <img alt="ecommerce" className="lg:w-1/2 w-full lg:h-auto px-24 object-cover object-top rounded" src={product.img} />
