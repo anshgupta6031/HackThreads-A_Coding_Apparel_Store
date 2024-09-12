@@ -100,13 +100,13 @@ export default function Client() {
     const handlePasswordSubmit = async (e) => {
         e.preventDefault()
 
-        if (password !== cpassword) {
-            toast.error('Current Passwords do not match', { position: "top-center", autoClose: 1500, hideProgressBar: false, closeOnClick: true, pauseOnHover: false, draggable: true, progress: undefined, theme: "light" });
+        if (password !== cpassword || password === "") {
+            toast.error('Invalid Current Passwords', { position: "top-center", autoClose: 1500, hideProgressBar: false, closeOnClick: true, pauseOnHover: false, draggable: true, progress: undefined, theme: "light" });
             return
         }
 
-        if (npassword !== cnpassword) {
-            toast.error('New Passwords do not match', { position: "top-center", autoClose: 1500, hideProgressBar: false, closeOnClick: true, pauseOnHover: false, draggable: true, progress: undefined, theme: "light" });
+        if (npassword !== cnpassword || npassword === "") {
+            toast.error('Invalid New Passwords', { position: "top-center", autoClose: 1500, hideProgressBar: false, closeOnClick: true, pauseOnHover: false, draggable: true, progress: undefined, theme: "light" });
             return
         }
 
@@ -126,7 +126,14 @@ export default function Client() {
 
         let json = await response.json()
 
-        if(json.success) toast.success('Password Updated Successfully.', { position: "top-center", autoClose: 1500, hideProgressBar: false, closeOnClick: true, pauseOnHover: false, draggable: true, progress: undefined, theme: "light" });
+        if(json.success){
+            toast.success('Password Updated Successfully.', { position: "top-center", autoClose: 1500, hideProgressBar: false, closeOnClick: true, pauseOnHover: false, draggable: true, progress: undefined, theme: "light" });
+            setPassword("")
+            setCpassword("")
+            setNpassword("")
+            setCnpassword("")
+        }
+
         else toast.error('Wrong Password.', { position: "top-center", autoClose: 1500, hideProgressBar: false, closeOnClick: true, pauseOnHover: false, draggable: true, progress: undefined, theme: "light" });
     }
 

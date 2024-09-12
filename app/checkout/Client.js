@@ -30,6 +30,54 @@ export default function Client() {
     const [disabled, setDisabled] = useState(true)
 
 
+    const fetchdata = async () => {
+
+        const token = localStorage.getItem("hackthreads_token")
+
+        const formBody = { token: token }
+
+        const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/getuser`, {
+            method: "POST",
+
+            headers: {
+                "Content-Type": "application/json",
+            },
+
+            body: JSON.stringify(formBody)
+        })
+
+        let json = await response.json()
+
+        setEmail(json.email)
+        setName(json.name)
+        setAddress(json.address)
+        setPhone(json.phone)
+        setPincode(json.pincode)
+
+        getpincode(json.pincode)
+    }
+
+    useEffect(() => {
+        fetchdata()
+    }, [])
+
+
+    const getpincode = async (pin) => {
+        let pins = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/pincode`)
+        let pinsJson = await pins.json()
+
+        if (Object.keys(pinsJson).includes(pin)) {
+            setCity(pinsJson[pin][0])
+            setState(pinsJson[pin][1])
+        }
+
+        else {
+            setCity('')
+            setState('')
+        }
+    }
+
+
     const handleChange = async (e) => {
 
         if (e.target.name == 'name') setName(e.target.value)
@@ -39,23 +87,11 @@ export default function Client() {
 
         if (e.target.name == 'pincode') {
             setPincode(e.target.value)
-
-            let pins = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/pincode`)
-            let pinsJson = await pins.json()
-
-            if (Object.keys(pinsJson).includes(e.target.value)) {
-                setCity(pinsJson[e.target.value][0])
-                setState(pinsJson[e.target.value][1])
-            }
-
-            else {
-                setCity('')
-                setState('')
-            }
+            getpincode(e.target.value)
         }
     }
-    
-    
+
+
     useEffect(() => {
         if (name.length > 2 && email.length > 2 && phone.length > 2 && address.length > 2 && pincode.length > 2) setDisabled(false)
         else setDisabled(true)
@@ -66,18 +102,18 @@ export default function Client() {
     const pay = async (amount) => {
 
         //  check if the details are valid.....
-        if(phone.length !== 10 || isNaN(phone)){
+        if (phone.length !== 10 || isNaN(phone)) {
             toast.error('Incorect Phone Number!', { position: "top-center", autoClose: 3500, hideProgressBar: false, closeOnClick: true, pauseOnHover: false, draggable: true, progress: undefined, theme: "light" });
             return
         }
 
-        if(pincode.length !== 6 || isNaN(pincode)){
+        if (pincode.length !== 6 || isNaN(pincode)) {
             toast.error('Incorect PinCode!', { position: "top-center", autoClose: 3500, hideProgressBar: false, closeOnClick: true, pauseOnHover: false, draggable: true, progress: undefined, theme: "light" });
             return
         }
 
         //  check if the pincode is serviceable.....
-        if(!Object.keys(pincodes).includes(pincode)){
+        if (!Object.keys(pincodes).includes(pincode)) {
             toast.error('This Pincode is not Serviceable.', { position: "top-center", autoClose: 3500, hideProgressBar: false, closeOnClick: true, pauseOnHover: false, draggable: true, progress: undefined, theme: "light" });
             return
         }
@@ -86,10 +122,10 @@ export default function Client() {
         //  Get the order Id
         let a = await initiate(email, cart, address, amount, city, state, pincode, phone, name)
 
-        if(!a){                 //  cart is tempered....
+        if (!a) {                 //  cart is tempered....
             toast.error('The price of some items in your cart is changed. Please try again.', { position: "top-center", autoClose: 3500, hideProgressBar: false, closeOnClick: true, pauseOnHover: false, draggable: true, progress: undefined, theme: "light" });
             setCart({})
-		    saveCart({})
+            saveCart({})
             return
         }
 
@@ -144,7 +180,7 @@ export default function Client() {
                     <div className="px-2 w-1/2">
                         <div className="mb-4">
                             <label htmlFor="email" className="leading-7 text-sm text-gray-600">Email</label>
-                            <input onChange={handleChange} placeholder="Enter your email." value={email} type="email" id="email" name="email" className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
+                            <input readOnly value={email} type="email" id="email" name="email" className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
                         </div>
                     </div>
                 </div>
@@ -210,7 +246,7 @@ export default function Client() {
                     <span className='total'>Subtotal: {subTotal}₹</span>
                 </div>
 
-                <button onClick={() => { pay(subTotal * 100) }} disabled={disabled || subTotal===0} className="disabled:bg-blue-400 flex mx-48 my-4 text-white bg-indigo-500 border-0 py-3 px-3 focus:outline-none hover:bg-indigo-600 rounded text-sm"><IoBagCheck className='mr-1 text-lg' />Pay ₹{subTotal}</button>
+                <button onClick={() => { pay(subTotal * 100) }} disabled={disabled || subTotal === 0} className="disabled:bg-blue-400 flex mx-48 my-4 text-white bg-indigo-500 border-0 py-3 px-3 focus:outline-none hover:bg-indigo-600 rounded text-sm"><IoBagCheck className='mr-1 text-lg' />Pay ₹{subTotal}</button>
 
             </div>
         </>
