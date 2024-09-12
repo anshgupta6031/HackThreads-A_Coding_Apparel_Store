@@ -5,6 +5,9 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 export default function Client() {
 
@@ -28,12 +31,65 @@ export default function Client() {
 
     const handleChange = async (e) => {
         if (e.target.name == 'name') setName(e.target.value)
-        if (e.target.name == 'email') setEmail(e.target.value)
         if (e.target.name == 'phone') setPhone(e.target.value)
         if (e.target.name == 'address') setAddress(e.target.value)
         if (e.target.name == 'pincode') setPincode(e.target.value)
         if (e.target.name == 'password') setPassword(e.target.value)
         if (e.target.name == 'cpassword') setCpassword(e.target.value)
+    }
+
+
+    useEffect(() => {
+        fetchdata()
+    }, [])
+
+
+    const fetchdata = async () => {
+
+        const token = localStorage.getItem("hackthreads_token")
+
+        const formBody = { token: token }
+
+        const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/getuser`, {
+            method: "POST",
+
+            headers: {
+                "Content-Type": "application/json",
+            },
+
+            body: JSON.stringify(formBody)
+        })
+
+        let json = await response.json()
+
+        setEmail(json.email)
+        setName(json.name)
+        setAddress(json.address)
+        setPhone(json.phone)
+        setPincode(json.pincode)
+    }
+
+
+    const handleUserSubmit = async (e) => {
+        e.preventDefault()
+
+        const token = localStorage.getItem("hackthreads_token")
+
+        const formBody = { token: token, address: address, pincode: pincode, phone: phone, name: name }
+
+        const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/updateuser`, {
+            method: "POST",
+
+            headers: {
+                "Content-Type": "application/json",
+            },
+
+            body: JSON.stringify(formBody)
+        })
+
+        let json = await response.json()
+
+        toast.success('Account Updated Successfully.', { position: "top-center", autoClose: 1500, hideProgressBar: false, closeOnClick: true, pauseOnHover: false, draggable: true, progress: undefined, theme: "light" });
     }
 
 
@@ -55,7 +111,7 @@ export default function Client() {
                     <div className="px-2 w-1/2">
                         <div className="mb-4">
                             <label htmlFor="email" className="leading-7 text-sm text-gray-600">Email</label>
-                            <input onChange={handleChange} placeholder="Enter your email." value={email} type="email" id="email" name="email" className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
+                            <input readOnly value={email} type="email" id="email" name="email" className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
                         </div>
                     </div>
                 </div>
@@ -83,7 +139,7 @@ export default function Client() {
                     </div>
                 </div>
 
-                <button className="disabled:bg-blue-400 flex mx-4 my-3 text-white bg-indigo-500 border-0 py-2 px-3 focus:outline-none hover:bg-indigo-600 rounded text-sm">Submit</button>
+                <button onClick={handleUserSubmit} className="disabled:bg-blue-400 flex mx-4 my-3 text-white bg-indigo-500 border-0 py-2 px-3 focus:outline-none hover:bg-indigo-600 rounded text-sm">Submit</button>
 
 
 

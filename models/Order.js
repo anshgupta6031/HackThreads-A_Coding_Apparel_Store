@@ -36,6 +36,36 @@ const OrderSchema = new mongoose.Schema({         //  a schema is defined.......
     },
 
 
+    city: {
+        type: String,
+        required: true,
+    },
+
+
+    state: {
+        type: String,
+        required: true,
+    },
+
+
+    pincode: {
+        type: String,
+        required: true,
+    },
+
+
+    phone: {
+        type: String,
+        required: true,
+    },
+
+
+    name: {
+        type: String,
+        required: true,
+    },
+
+
     amount: {
         type: Number,
         required: true,

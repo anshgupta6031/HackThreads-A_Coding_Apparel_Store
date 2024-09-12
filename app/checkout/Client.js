@@ -84,7 +84,7 @@ export default function Client() {
 
 
         //  Get the order Id
-        let a = await initiate(email, cart, address, amount)
+        let a = await initiate(email, cart, address, amount, city, state, pincode, phone, name)
 
         if(!a){                 //  cart is tempered....
             toast.error('The price of some items in your cart is changed. Please try again.', { position: "top-center", autoClose: 3500, hideProgressBar: false, closeOnClick: true, pauseOnHover: false, draggable: true, progress: undefined, theme: "light" });

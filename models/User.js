@@ -24,6 +24,24 @@ const UserSchema = new mongoose.Schema({         //  a schema is defined.......
         required: true,
     },
 
+
+    address: {
+        type: String,
+        default: '',
+    },
+
+    
+    pincode: {
+        type: String,
+        default: '',
+    },
+
+    
+    phone: {
+        type: String,
+        default: '',
+    },
+
 }, {                                         //  built-in data fields.....
     versionKey: false,
     timestamps: true,

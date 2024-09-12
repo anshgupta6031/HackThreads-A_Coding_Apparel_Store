@@ -8,7 +8,7 @@ import ProductModel from '@/models/Product'
 import connectToMongo from "@/middleware/mongoose";
 
 
-export const initiate = async (email, products, address, amount) => {
+export const initiate = async (email, products, address, amount, city, state, pincode, phone, name) => {
 
     await connectToMongo()
     
@@ -40,7 +40,7 @@ export const initiate = async (email, products, address, amount) => {
 
     let x = await instance.orders.create(options)
 
-    await Order.create({ email: email, orderId: x.id, products: products, address: address, amount: amount, status: "pending", paymentInfo: x })
+    await Order.create({ email: email, orderId: x.id, products: products, address: address, city: city, state: state, pincode: pincode, phone: phone, name: name, amount: amount, status: "pending", paymentInfo: x })
 
     return x
 }
